@@ -7,9 +7,12 @@ import { api, CRON_INTERVAL, ACCOUNT, AUTHORIZATION } from "./src/config";
 console.log(`Starting cron job with interval ${CRON_INTERVAL}`);
 new CronJob(CRON_INTERVAL, async () => {
     const usd = await get_ticker("WAXP-USD");
-
+    const btc = await get_ticker("WAXP-BTC");
+    const eth = await get_ticker("WAXP-ETH");
     const quotes: Quote[] = [
-        { pair: "waxpusd", value: to_uint(usd.lastTradeRate, 4)}
+        { pair: "waxpusd", value: to_uint(usd.lastTradeRate, 4)},
+        { pair: "waxpbtc", value: to_uint(btc.lastTradeRate, 8)},
+        { pair: "waxpeth", value: to_uint(eth.lastTradeRate, 8)}
     ]
     await transact( api, [ write( ACCOUNT, quotes, [ AUTHORIZATION ] )]);
 
