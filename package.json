@@ -9,13 +9,6 @@
   "scripts": {
     "start": "ts-node index.ts"
   },
-  "devDependencies": {
-    "@types/cron": "*",
-    "@types/node": "*",
-    "@types/node-fetch": "^2.0.0",
-    "ts-node": "*",
-    "typescript": "*"
-  },
   "dependencies": {
     "cron": "*",
     "dotenv": "*",
