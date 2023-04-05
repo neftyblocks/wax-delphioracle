@@ -1,20 +1,26 @@
 import { CronJob } from "cron"
-import { get_ticker } from "./plugins/bittrex"
+import { get_ticker } from "./plugins/bitfinex"
 import { Quote, write } from "./plugins/delphioracle"
 import { transact } from "./src/utils";
 import { api, CRON_INTERVAL, ACCOUNT, AUTHORIZATION } from "./src/config";
 
 console.log(`Starting cron job with interval ${CRON_INTERVAL}`);
 new CronJob(CRON_INTERVAL, async () => {
-    const usd = await get_ticker("WAXP-USD");
-    const btc = await get_ticker("WAXP-BTC");
-    const eth = await get_ticker("WAXP-ETH");
-    const eosUsd = await get_ticker("EOS-USD");
-    const eosRate = Number(usd.lastTradeRate) / Number(eosUsd.lastTradeRate);
+
+    const [usd, btc, eth, eosUsd] = await Promise.all([
+        get_ticker("tWAXUSD"),
+        get_ticker("tBTCUSD"),
+        get_ticker("tETHUSD"),
+        get_ticker("tEOSUSD")
+    ]);
+
+    const btcRate = Number(usd.lastPrice) / Number(btc.lastPrice);
+    const ethRate = Number(usd.lastPrice) / Number(eth.lastPrice);
+    const eosRate = Number(usd.lastPrice) / Number(eosUsd.lastPrice);
     const quotes: Quote[] = [
-        { pair: "waxpusd", value: to_uint(usd.lastTradeRate, 4)},
-        { pair: "waxpbtc", value: to_uint(btc.lastTradeRate, 8)},
-        { pair: "waxpeth", value: to_uint(eth.lastTradeRate, 8)},
+        { pair: "waxpusd", value: to_uint(usd.lastPrice, 4)},
+        { pair: "waxpbtc", value: to_uint(btcRate, 8)},
+        { pair: "waxpeth", value: to_uint(ethRate, 8)},
         { pair: "waxpeos", value: to_uint(eosRate, 6)}
     ]
     await transact( api, [ write( ACCOUNT, quotes, [ AUTHORIZATION ] )]);
