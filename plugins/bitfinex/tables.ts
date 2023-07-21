@@ -16,7 +16,6 @@ interface Ticker {
 export async function get_ticker(ticker: string): Promise<Ticker> {
   const url = `https://api-pub.bitfinex.com/v2/ticker/${ticker}`;
   const response = await fetch(url);
-  console.log(ticker);
   const result = await response.json();
   const [
     bid,
@@ -30,7 +29,6 @@ export async function get_ticker(ticker: string): Promise<Ticker> {
     high,
     low,
   ] = result;
-  console.log(result);
   return {
     bid,
     bigSize,
