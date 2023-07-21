@@ -14,34 +14,21 @@ interface Ticker {
 }
 
 export async function get_ticker(ticker: string): Promise<Ticker> {
-  const url = `https://api-pub.bitfinex.com/v2/ticker/${ticker}`;
+  const url = `https://cryptoprices.cc/${ticker}`;
   const response = await fetch(url);
-  console.log(ticker);
-  const result = await response.json();
-  const [
-    bid,
-    bigSize,
-    ask,
-    askSize,
-    dailyChange,
-    dailyChangeRelative,
-    lastPrice,
-    volume,
-    high,
-    low,
-  ] = result;
+  const result = await response.text();
   console.log(result);
   return {
-    bid,
-    bigSize,
-    ask,
-    askSize,
-    dailyChange,
-    dailyChangeRelative,
-    lastPrice,
-    volume,
-    high,
-    low,
+    bid: 0,
+    bigSize: 0,
+    ask: 0,
+    askSize: 0,
+    dailyChange: 0,
+    dailyChangeRelative: 0,
+    lastPrice: Number(result),
+    volume: 0,
+    high: 0,
+    low: 0,
   } as Ticker;
 }
 
