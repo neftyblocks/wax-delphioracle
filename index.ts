@@ -25,7 +25,6 @@ new CronJob(
       { pair: "waxpeth", value: to_uint(ethRate, 8) },
       { pair: "waxpeos", value: to_uint(eosRate, 6) },
     ];
-    console.log(quotes);
     await transact(api, [write(ACCOUNT, quotes, [AUTHORIZATION])]);
   },
   null,
