@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 
 interface Ticker {
   bid: number;
-  bigSize: number;
+  bidSize: number;
   ask: number;
   askSize: number;
   dailyChange: number;
@@ -19,7 +19,7 @@ export async function get_ticker(ticker: string): Promise<Ticker> {
   const result = await response.json();
   return {
     bid: 0,
-    bigSize: 0,
+    bidSize: 0,
     ask: 0,
     askSize: 0,
     dailyChange: 0,

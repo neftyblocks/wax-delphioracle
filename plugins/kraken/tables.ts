@@ -14,24 +14,21 @@ interface Ticker {
 }
 
 export async function get_ticker(ticker: string): Promise<Ticker> {
-  const url = `https://cryptoprices.cc/${ticker}`;
+  const url = `https://api.kraken.com/0/public/Ticker?pair=${ticker}`;
   const response = await fetch(url);
-  const result = await response.text();
+  const data = (await response.json());
+  const result = data.result[ticker];
+  console.log(result);
   return {
-    bid: 0,
-    bidSize: 0,
-    ask: 0,
-    askSize: 0,
+    bid: +result.b[0],
+    bidSize: +result.b[2],
+    ask: +result.a[0],
+    askSize: +result.a[2],
     dailyChange: 0,
     dailyChangeRelative: 0,
-    lastPrice: Number(result),
-    volume: 0,
-    high: 0,
-    low: 0,
+    lastPrice: +result.c[0],
+    volume: +result.v[1],
+    high: +result.h[1],
+    low: +result.l[1],
   } as Ticker;
 }
-
-// (async () => {
-//     const foo = await get_ticker("WAXP-BTC")
-//     console.log(foo);
-// })()
