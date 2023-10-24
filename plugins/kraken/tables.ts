@@ -18,7 +18,6 @@ export async function get_ticker(ticker: string): Promise<Ticker> {
   const response = await fetch(url);
   const data = (await response.json());
   const result = data.result[ticker];
-  console.log(result);
   return {
     bid: +result.b[0],
     bidSize: +result.b[2],
