@@ -10,16 +10,16 @@
     "start": "ts-node index.ts"
   },
   "devDependencies": {
-    "@types/cron": "*",
-    "@types/node": "*",
-    "@types/node-fetch": "^2.0.0",
-    "ts-node": "*",
-    "typescript": "*"
+    "@types/cron": "^2.0.1",
+    "@types/node": "^22.9.1",
+    "@types/node-fetch": "^2.6.12",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
   },
   "dependencies": {
-    "cron": "*",
-    "dotenv": "*",
-    "eosjs": "^21.0.1-rc1",
-    "node-fetch": "^2.0.0"
+    "cron": "^3.2.1",
+    "dotenv": "^16.4.5",
+    "eosjs": "^22.1.0",
+    "node-fetch": "^2.7.0"
   }
 }

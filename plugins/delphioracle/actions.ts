@@ -6,6 +6,7 @@ export interface Quote {
 }
 
 export function write( owner: string, quotes: Quote[], authorization?: Authorization[] ): Action {
+    console.log("Reporting quotes", quotes);
     return {
         account: "delphioracle",
         name: "write",

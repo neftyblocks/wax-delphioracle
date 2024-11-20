@@ -8,7 +8,7 @@ import { api, CRON_INTERVAL, ACCOUNT, AUTHORIZATION } from "./src/config";
 
 console.log(`Starting cron job with interval ${CRON_INTERVAL}`);
 new CronJob(
-  CRON_INTERVAL,
+  CRON_INTERVAL || "* * * * *",
   async () => {
     const [usdt, usdc, usd, btc, eth, eosUsd] = await Promise.all([
       getKrakenTicker("USDTZUSD"),

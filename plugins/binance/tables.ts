@@ -16,7 +16,7 @@ interface Ticker {
 export async function get_ticker(ticker: string): Promise<Ticker> {
   const url = `https://api.binance.com/api/v3/ticker/price?symbol=${ticker}`;
   const response = await fetch(url);
-  const result = await response.json();
+  const result = (await response.json()) as { price: string };
   return {
     bid: 0,
     bidSize: 0,
