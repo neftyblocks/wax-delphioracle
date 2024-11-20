@@ -1,5 +1,5 @@
-import { RpcError, Api } from "eosjs";
-import { Action } from "eosjs/dist/eosjs-serialize";
+import { RpcError, type Api } from "eosjs";
+import type { Action } from "eosjs/dist/eosjs-serialize";
 
 /**
  * Transaction

@@ -1,4 +1,4 @@
-import { Action, Authorization } from "eosjs/dist/eosjs-serialize";
+import type { Action, Authorization } from "eosjs/dist/eosjs-serialize";
 
 export interface Quote {
     value: number;

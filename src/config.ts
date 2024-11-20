@@ -1,6 +1,6 @@
 import { Api, JsonRpc } from 'eosjs';
 import { JsSignatureProvider } from 'eosjs/dist/eosjs-jssig';
-import { Authorization } from "eosjs/dist/eosjs-serialize";
+import type { Authorization } from "eosjs/dist/eosjs-serialize";
 const { TextEncoder, TextDecoder } = require('util');
 require("dotenv").config();
 
@@ -18,3 +18,4 @@ export const CRON_INTERVAL = process.env.CRON_INTERVAL || '* * * * *';
 export const ACCOUNT = process.env.ACCOUNT;
 export const PERMISSION = process.env.PERMISSION;
 export const AUTHORIZATION: Authorization = { actor: ACCOUNT, permission: PERMISSION };
+export const DATA_SOURCE = process.env.DATA_SOURCE || 'binance';
